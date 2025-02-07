@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('bg2.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      /* display: flex;*/
+      justify-content: center;
+      align-items: center;
+      /* flex-direction: column; */
+      color: #fff; 
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+    }
+
+
+    #logo {
+      width: 50px;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    #login {
+      max-width: 300px;
+      margin: 0 auto;
+      margin-top: 50px;
+      margin-bottom: 125px;
+      padding: 50px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #login h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    #login form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #login label {
+      margin-bottom: 5px;
+    }
+
+    #login input[type="text"],
+    #login input[type="password"] {
+      margin-bottom: 10px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    #login input[type="submit"] {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <script src="my-account.js"></script>
+  <header>
+    <a href="#home">
+      <img src="whittplogo.png" alt="Company Logo" id="logo">
+    </a>
+    <nav>
+
+    </nav>
+
+  </header>
+  <main>
+    <section id="login">
+      <h1>Login</h1>
+      <form action="index.html">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required />
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+        <input type="submit" value="Login" />
+      </form>
+      <p>Don't have an account? <a href="#">Sign up</a></p>
+    </section>
+  </main>
+  <footer>
+    <p>Copyright © 2024 Professional Website. All rights reserved.</p>
+  </footer>
+</body>
+
+</html>

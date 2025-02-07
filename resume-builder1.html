@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Resume Builder</title>
+    <link rel="stylesheet" href="resume-builder1.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="#home">
+          <img src="logo2.png" alt="Company Logo" id="logo" />
+        </a>
+      </nav>
+    </header>
+
+    <h1 style="color: aliceblue">Resume Builder</h1>
+
+    <!-- Modal for entering resume details -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <form id="resumeForm" onsubmit="return submitForm()">
+          <label for="name">Name:</label><br />
+          <input type="text" id="name" name="name" required /><br />
+          <label for="email">Email:</label><br />
+          <input type="email" id="email" name="email" required /><br />
+
+          <label for="phone">Phone:</label><br />
+          <input type="text" id="phone" name="phone" required /><br />
+
+          <label for="bio">Bio:</label><br />
+          <textarea id="bio" name="bio" required></textarea><br />
+
+          <label for="location">Location:</label><br />
+          <input type="text" id="location" name="location" required /><br />
+
+          <label for="position">Position:</label><br />
+          <input type="text" id="position" name="position" required /><br />
+
+          <h3>Education:</h3>
+          <label for="education-school">School/University:</label><br />
+          <input
+            type="text"
+            id="education-school"
+            name="education-school"
+            required
+          /><br />
+          <label for="education-degree">Degree:</label><br />
+          <input
+            type="text"
+            id="education-degree"
+            name="education-degree"
+            required
+          /><br />
+          <label for="education-year">Year of Graduation:</label><br />
+          <input
+            type="text"
+            id="education-year"
+            name="education-year"
+            required
+          /><br />
+
+          <h3>Experience:</h3>
+          <label for="experience-company">Company:</label><br />
+          <input
+            type="text"
+            id="experience-company"
+            name="experience-company"
+            required
+          /><br />
+          <label for="experience-position">Position:</label><br />
+          <input
+            type="text"
+            id="experience-position"
+            name="experience-position"
+            required
+          /><br />
+          <label for="experience-duration">Duration:</label><br />
+          <input
+            type="text"
+            id="experience-duration"
+            name="experience-duration"
+            required
+          /><br />
+          <label for="experience-description">Description:</label><br />
+          <textarea
+            id="experience-description"
+            name="experience-description"
+            required
+          ></textarea
+          ><br />
+          <small>Separate each bullet point with a new line</small><br />
+          <br />
+
+          <h3>Skills:</h3>
+          <label for="skills">Skills:</label><br />
+          <textarea id="skills" name="skills" required></textarea><br />
+
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+    </div>
+
+    <div class="card-container">
+      <div class="card" onclick="openModal()">
+        <h2>Create a new resume</h2>
+        <p>Start with a blank paper. We’ll guide you step by step.</p>
+        <img src="./createaResume.svg" alt="resumeImage" />
+      </div>
+
+    <!-- Upload Card -->
+<div class="card" onclick="openUploadModal()">
+  <h2>Upload your existing</h2>
+  <p>Don’t start from scratch. Use our tool to improve it.</p>
+  <img src="./upload.svg" alt="uploadImage" />
+</div>
+
+<!-- Modal for uploading PDF -->
+<div id="uploadModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeUploadModal()">&times;</span>
+    <h2>Upload Your Resume</h2>
+    <input type="file" id="pdfInput" accept=".pdf" />
+    <button onclick="handlePDFUpload()">Upload</button>
+  </div>
+</div>
+
+<!-- Editable Resume Form (Initially Hidden) -->
+<div id="editableResume" style="display: none;">
+  <h2>Editable Resume</h2>
+  <form id="editableForm">
+    <label for="name">Name:</label><br />
+    <input type="text" id="editableName" name="name" /><br />
+
+    <label for="email">Email:</label><br />
+    <input type="email" id="editableEmail" name="email" /><br />
+
+    <label for="phone">Phone:</label><br />
+    <input type="text" id="editablePhone" name="phone" /><br />
+
+    <label for="bio">Bio:</label><br />
+    <textarea id="editableBio" name="bio"></textarea><br />
+
+    <label for="location">Location:</label><br />
+    <input type="text" id="editableLocation" name="location" /><br />
+
+    <label for="position">Position:</label><br />
+    <input type="text" id="editablePosition" name="position" /><br />
+
+    <h3>Education:</h3>
+    <input type="text" id="editableEducation" name="education" /><br />
+
+    <h3>Experience:</h3>
+    <textarea id="editableExperience" name="experience"></textarea><br />
+
+    <h3>Skills:</h3>
+    <textarea id="editableSkills" name="skills"></textarea><br />
+
+    <button type="submit">Save Changes</button>
+  </form>
+</div>
+lls"></ul>
+    </div>
+
+    <script>
+      var modal = document.getElementById("myModal");
+      var span = document.getElementsByClassName("close")[0];
+
+      function openUploadModal() {
+  document.getElementById("uploadModal").style.display = "block";
+}
+
+// Close the upload modal
+function closeUploadModal() {
+  document.getElementById("uploadModal").style.display = "none";
+}
+function openModal() {
+  console.log("Modal Clicked"); // Debugging
+  document.getElementById("myModal").style.display = "block";
+}
+
+
+      span.onclick = function () {
+        modal.style.display = "none";
+      };
+
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      };
+
+      function submitForm() {
+        var formData = new FormData(document.getElementById("resumeForm"));
+
+        // Fill the template with form data
+        document.getElementById("templateName").textContent =
+          formData.get("name");
+        document.getElementById("templatePosition").textContent =
+          formData.get("position");
+        document.getElementById("templateEmail").textContent =
+          formData.get("email");
+        document.getElementById("templatePhone").textContent =
+          formData.get("phone");
+        document.getElementById("templateBio").textContent =
+          formData.get("bio");
+        document.getElementById("templateLocation").textContent =
+          formData.get("location");
+
+        document.getElementById("resumeTemplate").style.display = "block";
+        modal.style.display = "none";
+
+        // Education
+        var educationSchool = formData.get("education-school");
+        var educationDegree = formData.get("education-degree");
+        var educationYear = formData.get("education-year");
+        document.getElementById("templateEducation").innerHTML = `
+          <li><strong>${educationDegree}</strong> - ${educationSchool}, ${educationYear}</li>
+        `;
+        // Experience
+        var experienceCompany = formData.get("experience-company");
+        var experiencePosition = formData.get("experience-position");
+        var experienceDuration = formData.get("experience-duration");
+        var experienceDescription = formData.get("experience-description");
+        var descriptionBullets = experienceDescription.split("\n");
+        var descriptionHTML =
+          "<li><strong>" +
+          experiencePosition +
+          "</strong> - " +
+          experienceCompany +
+          " (" +
+          experienceDuration +
+          ")<ul>";
+        descriptionBullets.forEach(function (bullet) {
+          descriptionHTML += "<li>" + bullet + "</li>";
+        });
+        descriptionHTML += "</ul></li>";
+        document.getElementById("templateExperience").innerHTML =
+          descriptionHTML;
+
+        // Skills
+        document.getElementById(
+          "templateSkills"
+        ).innerHTML = `<li>${formData.get("skills")}</li>`;
+
+        // Show the filled template
+        document.getElementById("resumeTemplate").style.display = "block";
+
+        // Hide the modal
+        modal.style.display = "none";
+
+        // Prevent default form submission
+        return false;
+      }
+      // Open the upload modal
+      function openUploadModal() {
+        document.getElementById("uploadModal").style.display = "block";
+      }
+
+      // Close the upload modal
+      function closeUploadModal() {
+        document.getElementById("uploadModal").style.display = "none";
+      }
+
+      // Handle PDF file upload
+      function handlePDFUpload() {
+  const fileInput = document.getElementById("pdfInput");
+  const file = fileInput.files[0];
+
+  if (file && file.type === "application/pdf") {
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+      const pdfData = new Uint8Array(e.target.result);
+
+      // Load and parse the PDF using pdf.js
+      pdfjsLib.getDocument(pdfData).promise.then(function (pdf) {
+        let textContent = "";
+
+        // Extract text from each page of the PDF
+        let promises = [];
+        for (let i = 1; i <= pdf.numPages; i++) {
+          promises.push(
+            pdf.getPage(i).then(function (page) {
+              return page.getTextContent().then(function (text) {
+                text.items.forEach(function (item) {
+                  textContent += item.str + " ";
+                });
+              });
+            })
+          );
+        }
+
+        // When all pages are processed, populate the editable form
+        Promise.all(promises).then(function () {
+          populateEditableForm(textContent);
+        });
+      });
+    };
+
+    reader.readAsArrayBuffer(file);
+  } else {
+    alert("Please upload a valid PDF file.");
+  }
+}
+
+
+      // Parse PDF content and populate the template
+      function populateEditableForm(textContent) {
+  // Extract the relevant information using regex or string matching
+  const nameMatch = textContent.match(/Name:\s*(.*)/);
+  const emailMatch = textContent.match(/Email:\s*(.*)/);
+  const phoneMatch = textContent.match(/Phone:\s*(.*)/);
+  const bioMatch = textContent.match(/Bio:\s*(.*)/);
+  const locationMatch = textContent.match(/Location:\s*(.*)/);
+  const positionMatch = textContent.match(/Position:\s*(.*)/);
+  const educationMatch = textContent.match(/Education:\s*(.*)/);
+  const experienceMatch = textContent.match(/Experience:\s*(.*)/);
+  const skillsMatch = textContent.match(/Skills:\s*(.*)/);
+
+  // Populate form fields if matches are found
+  if (nameMatch) document.getElementById("editableName").value = nameMatch[1];
+  if (emailMatch) document.getElementById("editableEmail").value = emailMatch[1];
+  if (phoneMatch) document.getElementById("editablePhone").value = phoneMatch[1];
+  if (bioMatch) document.getElementById("editableBio").value = bioMatch[1];
+  if (locationMatch) document.getElementById("editableLocation").value = locationMatch[1];
+  if (positionMatch) document.getElementById("editablePosition").value = positionMatch[1];
+  if (educationMatch) document.getElementById("editableEducation").value = educationMatch[1];
+  if (experienceMatch) document.getElementById("editableExperience").value = experienceMatch[1];
+  if (skillsMatch) document.getElementById("editableSkills").value = skillsMatch[1];
+
+  // Show the editable form
+  document.getElementById("editableResume").style.display = "block";
+  closeUploadModal();
+}
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+  </body>
+</html>

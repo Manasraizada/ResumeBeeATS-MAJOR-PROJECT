@@ -1,0 +1,35 @@
+#container {
+    background-image: url(home-background.jpg);
+    background-size: cover; 
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: left;
+    flex-direction: column;
+    color: #761010;
+  }
+  .buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding-left: 50px;
+    padding-top: 30px;
+
+  }
+  a {
+    text-decoration: none;
+  }
+
+  .button1 {
+    background-image: url("");
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 260px;
+    margin-right: 10px;
+    font-weight: bold;
+    font-size: x-large;
+  }
